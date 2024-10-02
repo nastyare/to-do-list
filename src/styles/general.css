@@ -1,0 +1,92 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../../fonts/Roboto.ttf");
+}
+* {
+  font-family: Roboto;
+  background-color: #1B1A17;
+}
+
+button {
+  color: #F0E3CA;
+  border-radius: 8px;
+  border: 2px solid #A35709;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1F1E1B;
+  border-color: #FF8303;
+}
+
+p {
+  color: #F0E3CA;
+}
+
+.main-section {
+  width: 100%;
+}
+
+.base-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 23px;
+  padding-top: 23px;
+  padding-right: 22px;
+  height: 80px;
+}
+.base-form .input-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 90%;
+}
+.base-form .input-element {
+  height: 32px;
+  background-color: #1F1E1B;
+  border: 1px solid #A35709;
+  border-radius: 8px;
+  width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+}
+.base-form .add-button {
+  width: 10%;
+  padding: 23px;
+  margin-left: 10px;
+}
+
+.no-tasks {
+  position: relative;
+  top: 40%;
+  left: 45%;
+  transform: translate(10%, 30%);
+  width: -moz-fit-content;
+  width: fit-content;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0px;
+}
+.no-tasks ::before {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 1px;
+  background-color: #A35709;
+  border: 3px solid #A35709;
+  border-radius: 8px;
+}
+.no-tasks ::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 1px;
+  background-color: #A35709;
+  border: 3px solid #A35709;
+  border-radius: 8px;
+}
+.no-tasks p {
+  font-weight: 400;
+  font-size: 24px;
+}/*# sourceMappingURL=general.css.map */
