@@ -6,12 +6,15 @@
     <link href="../src/styles/general.css" rel="stylesheet" />
 </head>
 
+
+
+<!-- Для айдишника таска можно использовать Date.now - будет записывать секунды.-->
 <body>
    <div class="main-section">
         <div class="base-form">
             <div class="input-section">
-                <input class="input-element" placeholder="Title..."></input>
-                <textarea class="input-element" placeholder="About..."></textarea>
+                <input type="text" class="input-element" id="title" placeholder="Title..."></input>
+                <textarea type="text" class="input-element" id="description" placeholder="About..."></textarea>
             </div>
     
             <button class="add-button">
@@ -22,51 +25,12 @@
         <div class="no-tasks">
             <p>No Tasks</p>
         </div>
+
+        <ul class="tasks-list">
+
+        </ul>
     </div>
 
 
-    <div class="edit-task">
-        <div class="input-section">
-            <input class="add-title"></input>
-            <textarea class="add-description"></textarea>
-        </div>
-
-        <div class="edit-buttons">
-            <button>Cancel</button>
-            <button>Save</button>
-        </div>
-    </div>
-
-
-    <div class="delete-task">
-        <p>Delete this task?</p>
-
-        <div class="delete-buttons">
-            <button>Yes</button>
-            <button>No</button>
-        </div>
-    </div>
-
-
-    <div class="menu-share">
-        <div class="share-button">
-            <img src="../src/images/sharing-images/copy.svg">
-        </div>
-
-        <div class="share-button">
-            <img src="../src/images/sharing-images/vk.svg">
-        </div>
-
-        <div class="share-button">
-            <img src="../src/images/sharing-images/telegram.svg">
-        </div>
-
-        <div class="share-button"></div>
-            <img src="../src/images/sharing-images/whatsapp.svg">
-        </div>
-
-        <div class="share-button"></div>
-            <img src="../src/images/sharing-images/facebook.svg">
-        </div>
-    </div>
+    <script src="../src/options.js"></script>
 </body>
