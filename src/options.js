@@ -20,6 +20,9 @@ function addTask() {
 
 addButton.addEventListener('click', addTask);
 
+
+let taskToDelete = null;
+
 function createTaskElement(title, description) {
     const taskDiv = document.createElement('div');
     taskDiv.classList.add('task-item'); 
@@ -30,8 +33,31 @@ function createTaskElement(title, description) {
     const taskDescription = document.createElement('p');
     taskDescription.textContent = description;
 
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('close-button'); 
+
+    deleteButton.addEventListener('click', () => {
+        taskToDelete = taskDiv;
+        document.querySelector('.delete-section').style.display = 'block'; 
+    });
+
     taskDiv.appendChild(taskTitle);
     taskDiv.appendChild(taskDescription);
+    taskDiv.appendChild(deleteButton); 
 
     tasksList.appendChild(taskDiv);
 }
+
+document.querySelector('.delete-section').addEventListener('click', (event) => {
+    if (event.target.classList.contains('confirm')) {
+        if (taskToDelete) {
+            tasksList.removeChild(taskToDelete); 
+            taskToDelete = null;
+        }
+        document.querySelector('.delete-section').style.display = 'none'; 
+    } else if (event.target.classList.contains('cancel')) {
+        taskToDelete = null; 
+        document.querySelector('.delete-section').style.display = 'none'; 
+    }
+});
+
