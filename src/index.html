@@ -14,11 +14,11 @@
         <div class="base-form">
             <div class="input-section">
                 <input type="text" class="input-element" id="title" placeholder="Title..."></input>
-                <textarea type="text" class="input-element" id="description" placeholder="About..."></textarea>
+                <input type="text" class="input-element" id="description" placeholder="About..."></input>
             </div>
     
             <button class="add-button">
-                <img src="../src/images/add-button.svg">
+                <img src="../src/images/add-button.svg" class="add">
             </button>
         </div>
 
@@ -31,11 +31,31 @@
         </ul>
     </div>
 
-    <div class="delete-section">
+    <div class="delete-section background">
         <div class="modal-content">
             <p>Delete this task?</p>
             <button class="confirm">Yes</button>
             <button class="cancel">No</button>
+        </div>
+    </div>
+
+    <div class="menu-section background">
+        <ul class="menu">
+            <li><img src="../src/images/sharing-images/copy.svg"></li>
+            <li><img src="../src/images/sharing-images/telegram.svg"></li>
+            <li><img src="../src/images/sharing-images/vk.svg"></li>
+            <li><img src="../src/images/sharing-images/whatsapp.svg"></li>
+        </ul>
+    </div>
+
+    <div class="edit-section background">
+        <div class="edit">
+            <input type="text" class="edit-element" id="title"></input>
+            <input type="text" class="edit-element" id="description"></input>
+            <div class="buttons">
+                <button class="cancel">Cancel</button>
+                <button class="confirm">Save</button>
+            </div>
         </div>
     </div>
     

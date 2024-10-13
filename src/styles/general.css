@@ -1,9 +1,10 @@
+@charset "UTF-8";
 @font-face {
   font-family: "Roboto";
   src: url("../../fonts/Roboto.ttf");
 }
 * {
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   background-color: #1B1A17;
 }
 
@@ -26,20 +27,23 @@ h3 {
   align-items: center;
 }
 
+.main-section {
+  padding: 20px 40px;
+}
+
 .base-form {
+  width: 95%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-left: 23px;
-  padding-top: 23px;
-  padding-right: 22px;
+  padding: 23px 22px;
   height: 110px;
 }
 .base-form .input-section {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 90%;
+  width: 80%;
 }
 .base-form .input-element {
   height: 48px;
@@ -51,9 +55,13 @@ h3 {
   font-size: 14px;
 }
 .base-form .add-button {
-  width: 10%;
-  padding: 23px;
+  width: 20%;
   margin-left: 10px;
+}
+.base-form .add-button .add {
+  margin: 23px;
+  justify-content: center;
+  align-items: center;
 }
 
 .no-tasks {
@@ -90,50 +98,65 @@ h3 {
   font-size: 24px;
 }
 
-ul {
+.tasks-list {
   margin-top: 32px;
-  padding: 0px 22px;
+  padding: 0 22px;
   gap: 10px;
 }
-ul .task-item {
-  height: 72px;
+.tasks-list .task-item {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border-radius: 8px;
   border: 3px solid #A35709;
-  padding: 10 0 10 16px;
+  padding: 10px 16px;
   position: relative;
   margin-bottom: 10px;
 }
-ul .task-item h3 {
+.tasks-list .task-item h3,
+.tasks-list .task-item p {
   margin: 0;
-  font-size: 22px;
   font-weight: 500;
   width: 80%;
 }
-ul .task-item p {
-  margin: 0;
+.tasks-list .task-item p {
   font-size: 14px;
   font-weight: 400;
-  width: 80%;
 }
-ul .task-item .close-button {
+.tasks-list .task-item .close-button {
   position: absolute;
   right: 10px;
   top: 50%;
-  margin-right: 12px;
   transform: translateY(-50%);
-  height: 50%;
-  width: 5%;
   cursor: pointer;
   background-image: url("../images/delete-button.svg");
-  background-size: 50%;
+  background-size: contain;
   background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: transparent;
+}
+.tasks-list .task-item .task-menu {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+  margin-top: 10px;
+  padding-top: 5px;
+}
+.tasks-list .task-item .task-menu button {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background-color: #A35709;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.delete-section {
+.background {
   display: none;
   position: fixed;
   z-index: 1;
@@ -143,7 +166,8 @@ ul .task-item .close-button {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
-.delete-section .modal-content {
+
+.modal-content {
   margin: 15% auto;
   padding: 30px 20px;
   width: 30%;
@@ -151,12 +175,74 @@ ul .task-item .close-button {
   text-align: center;
   border-top: 6px solid #A35709;
 }
-.delete-section .modal-content p {
+.modal-content p {
   font-weight: 400;
   font-size: 18px;
 }
-.delete-section .modal-content button {
+.modal-content button {
   height: 24px;
   width: 30%;
-  height: 20%;
+}
+
+.menu-section {
+  justify-content: center;
+  align-items: flex-end;
+}
+.menu-section .menu {
+  display: flex;
+  width: 80%;
+  height: 80px;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 8px;
+}
+.menu-section .menu li {
+  list-style: none;
+}
+
+/* Меню кнопок (share, info, edit) */
+.task-menu {
+  display: flex;
+  flex-direction: row;
+  margin-top: 35px;
+}
+
+/* Стиль для каждой кнопки в меню */
+.task-menu button {
+  background-color: #1F1E1B;
+  border: 2px solid #A35709;
+  border-radius: 50%;
+  color: #A35709;
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+/* Иконки можно добавить позже */
+.task-menu .share-button::before {
+  content: "⤴";
+  /* Иконка для Share */
+}
+
+.task-menu .info-button::before {
+  content: "ℹ";
+  /* Иконка для Info */
+}
+
+.task-menu .edit-button::before {
+  content: "✏";
+  /* Иконка для Edit */
+}
+
+.edit-section {
+  width: 100%;
+  height: 50%;
+  justify-content: center;
+  align-items: flex-end;
+}
+.edit-section .edit {
+  display: flex;
+  flex-direction: column;
 }/*# sourceMappingURL=general.css.map */
