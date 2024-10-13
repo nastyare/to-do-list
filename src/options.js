@@ -23,7 +23,6 @@ addButton.addEventListener('click', addTask);
 
 let taskToDelete = null;
 let currentlyOpenedMenu = null;
-let currentTask = null;
 
 function createTaskElement(title, description) {
     const taskDiv = document.createElement('div');
@@ -88,29 +87,44 @@ function createTaskElement(title, description) {
         });
     });
 
+
+    // РЕДАКТИРОВАНИЕ
     editButton.addEventListener('click', (event) => {
+        event.stopPropagation();
         const editSection = document.querySelector('.edit-section');
-        const titleInput = document.getElementsByName(taskTitle);
-        const descriptionInput = document.getElementsByName(taskDescription);
-        titleInput.value = taskTitle.textContent;
-        descriptionInput.value = taskDescription.textContent; 
-
+        
+        const currentTitle = taskTitle.textContent;
+        const currentDescription = taskDescription.textContent;
+    
+        const editTitleInput = document.querySelector('.edit #title');
+        const editDescriptionInput = document.querySelector('.edit #description');
+    
+        editTitleInput.value = currentTitle;
+        editDescriptionInput.value = currentDescription;
+    
         editSection.style.display = 'flex';
-
-
-        const saveButton = document.querySelector('.confirm');
+    
+        const saveButton = document.querySelector('.save');
         saveButton.onclick = () => {
-            taskTitle.textContent = titleInput.value;
-            taskDescription.textContent = descriptionInput.value;
-            editSection.style.display = 'none'; 
+            taskTitle.textContent = editTitleInput.value;
+            taskDescription.textContent = editDescriptionInput.value;
+    
+            editSection.style.display = 'none';
+    
+            saveTasksToLocalStorage();
         };
-
+        const cancelButton = document.querySelector('.cancel');
+        cancelButton.onclick = () => {
+            editSection.style.display = 'none';
+        }
+    
         editSection.addEventListener('click', (event) => {
             if (!event.target.closest('.edit')) {
                 editSection.style.display = 'none';
             }
         });
     });
+    
     
 
     taskDiv.appendChild(taskTitle);
@@ -164,13 +178,13 @@ window.onload = loadTasksFromLocalStorage;
 
 
 document.querySelector('.delete-section').addEventListener('click', (event) => {
-    if (event.target.classList.contains('confirm')) {
+    if (event.target.classList.contains('yes')) {
         if (taskToDelete) {
             tasksList.removeChild(taskToDelete); 
             taskToDelete = null;
         }
         document.querySelector('.delete-section').style.display = 'none'; 
-    } else if (event.target.classList.contains('cancel')) {
+    } else if (event.target.classList.contains('no')) {
         taskToDelete = null; 
         document.querySelector('.delete-section').style.display = 'none'; 
     }
