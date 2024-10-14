@@ -1,7 +1,6 @@
-@charset "UTF-8";
 @font-face {
   font-family: "Roboto";
-  src: url("../../fonts/Roboto.ttf");
+  src: url("../fonts/Roboto.ttf");
 }
 * {
   font-family: Roboto, sans-serif;
@@ -16,7 +15,7 @@ button {
 }
 
 button:hover {
-  background-color: #1F1E1B;
+  background-color: #242320;
   border-color: #FF8303;
 }
 
@@ -32,12 +31,11 @@ h3 {
 }
 
 .base-form {
-  width: 95%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   padding: 23px 22px;
   height: 110px;
+  justify-content: center;
 }
 .base-form .input-section {
   display: flex;
@@ -47,7 +45,7 @@ h3 {
 }
 .base-form .input-element {
   height: 48px;
-  background-color: #1F1E1B;
+  background-color: #242320;
   border: 1px solid #A35709;
   border-radius: 8px;
   width: 100%;
@@ -55,8 +53,8 @@ h3 {
   font-size: 14px;
 }
 .base-form .add-button {
-  width: 20%;
   margin-left: 10px;
+  width: 20%;
 }
 .base-form .add-button .add {
   margin: 23px;
@@ -99,8 +97,9 @@ h3 {
 }
 
 .tasks-list {
+  display: flex;
   margin-top: 32px;
-  padding: 0 22px;
+  padding: 0;
   gap: 10px;
 }
 .tasks-list .task-item {
@@ -167,21 +166,23 @@ h3 {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-content {
+.delete-window {
   margin: 15% auto;
   padding: 30px 20px;
   width: 30%;
   height: 148px;
   text-align: center;
   border-top: 6px solid #A35709;
+  border-radius: 8px;
 }
-.modal-content p {
+.delete-window p {
   font-weight: 400;
-  font-size: 18px;
+  font-size: 30px;
 }
-.modal-content button {
-  height: 24px;
+.delete-window button {
+  height: 30px;
   width: 30%;
+  font-size: 16px;
 }
 
 .menu-section {
@@ -190,59 +191,145 @@ h3 {
 }
 .menu-section .menu {
   display: flex;
+  position: fixed;
+  bottom: 0;
   width: 80%;
-  height: 80px;
+  height: 100px;
   justify-content: space-around;
   align-items: center;
-  border-radius: 8px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  list-style: none;
+  border: 1px solid #A35709;
 }
 .menu-section .menu li {
-  list-style: none;
-}
-
-/* Меню кнопок (share, info, edit) */
-.task-menu {
-  display: flex;
-  flex-direction: row;
-  margin-top: 35px;
-}
-
-/* Стиль для каждой кнопки в меню */
-.task-menu button {
-  background-color: #1F1E1B;
-  border: 2px solid #A35709;
-  border-radius: 50%;
-  color: #A35709;
-  width: 30px;
-  height: 30px;
-  font-size: 14px;
-  margin-left: 5px;
   cursor: pointer;
 }
 
-/* Иконки можно добавить позже */
-.task-menu .share-button::before {
-  content: "⤴";
-  /* Иконка для Share */
+.task-menu {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 30px;
+  margin-top: -5px;
+  gap: 10px;
+  flex-direction: row;
 }
-
-.task-menu .info-button::before {
-  content: "ℹ";
-  /* Иконка для Info */
-}
-
-.task-menu .edit-button::before {
-  content: "✏";
-  /* Иконка для Edit */
-}
-
-.edit-section {
-  width: 100%;
-  height: 50%;
+.task-menu button {
+  background-color: #242320;
+  border: 2px solid #A35709;
+  border-radius: 50%;
+  color: #A35709;
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 }
+.task-menu button.share-button {
+  background-image: url("../images/share-button.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.task-menu button.info-button {
+  background-image: url("../images/info-button.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.task-menu button.edit-button {
+  background-image: url("../images/edit-button.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .edit-section .edit {
   display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 5%;
+  right: 5%;
+  top: 50%;
   flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  border-radius: 8px;
+  background-color: #1B1A17;
+}
+.edit-section .edit.edit-elements {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+  flex-direction: column;
+}
+.edit-section .edit.edit-elements.edit-element {
+  width: 80%;
+  margin: 0 10px;
+  padding: 10px;
+  border-radius: 5px;
+  color: #F0E3CA;
+  border: 1px solid #A35709;
+  background-color: #242320;
+}
+.edit-section .edit.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.edit-section .edit.buttons button {
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 300px) and (max-width: 480px) {
+  .base-form {
+    display: flex;
+    width: 80%;
+    height: 30%;
+    margin: 0;
+    border: 1px solid white;
+  }
+  ul {
+    border: 1px solid white;
+    margin: 5px auto;
+    width: 50%;
+    height: auto;
+  }
+  ul .task-item {
+    height: 100px;
+  }
+  ul .task-item h3 {
+    font-size: 36px;
+  }
+  ul .task-item p {
+    font-size: 30px;
+  }
+}
+@media screen and (min-width: 2000px) and (max-width: 2600px) {
+  .base-form {
+    width: 50%;
+    height: 300px;
+    border: 1px solid green;
+    margin: 10px auto;
+    display: flex;
+  }
+  ul {
+    border: 1px solid white;
+    margin: 5px auto;
+    width: 50%;
+    height: auto;
+  }
+  ul .task-item {
+    height: 100px;
+  }
+  ul .task-item h3 {
+    font-size: 36px;
+  }
+  ul .task-item p {
+    font-size: 30px;
+  }
+  .menu {
+    height: 300px;
+  }
 }/*# sourceMappingURL=general.css.map */
