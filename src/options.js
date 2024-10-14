@@ -39,11 +39,17 @@ function createTaskElement(title, description) {
 
 
     // УДАЛЕНИЕ
-    deleteButton.addEventListener('click', (e) => {
-        e.stopPropagation(); 
+    deleteButton.addEventListener('click', () => {
         taskToDelete = taskDiv;
-        document.querySelector('.delete-section').style.display = 'block';
+        const deleteSection = document.querySelector('.delete-section');
+        deleteSection.style.display = 'flex';
         deleteTaskFromLocalStorage(taskDiv);
+
+        document.querySelector('.delete-section').addEventListener('click', (event) => {
+            if (!event.target.closest('.delete-window')) {
+                deleteSection.style.display = 'none';
+            }
+        });
     });
 
 
