@@ -4,6 +4,8 @@ const descriptionInput = document.getElementById("description");
 const noTasksMessage = document.getElementsByClassName('no-tasks')[0];
 const tasksList = document.getElementsByClassName("tasks-list")[0];
 
+
+// ДОБАВЛЕНИЕ ТАСКА
 function addTask() {
     const title = titleInput.value.trim();
     const description = descriptionInput.value.trim();
@@ -24,38 +26,20 @@ addButton.addEventListener('click', addTask);
 let taskToDelete = null;
 let currentlyOpenedMenu = null;
 
+// СОЗДАНИЕ ТАСКА
 function createTaskElement(title, description) {
     const taskDiv = document.createElement('div');
     taskDiv.classList.add('task-item'); 
-
     const taskTitle = document.createElement('h3');
-    taskTitle.textContent = title;
-
+    taskTitle.textContent = title; 
     const taskDescription = document.createElement('p');
-    taskDescription.textContent = description;
-
+    taskDescription.textContent = description; 
     const deleteButton = document.createElement('button');
-    deleteButton.classList.add('close-button');
+    deleteButton.classList.add('delete-button');
 
-
-    // УДАЛЕНИЕ
-    deleteButton.addEventListener('click', () => {
-        taskToDelete = taskDiv;
-        const deleteSection = document.querySelector('.delete-section');
-        deleteSection.style.display = 'flex';
-        deleteTaskFromLocalStorage(taskDiv);
-
-        document.querySelector('.delete-section').addEventListener('click', (event) => {
-            if (!event.target.closest('.delete-window')) {
-                deleteSection.style.display = 'none';
-            }
-        });
-    });
-
-
-    // МЕНЮ 
+    // МЕНЮ
     const menuDiv = document.createElement('div');
-    menuDiv.classList.add('task-menu');
+    menuDiv.classList.add('task-menu'); 
 
     const shareButton = document.createElement('button');
     shareButton.classList.add('share-button');
@@ -65,6 +49,7 @@ function createTaskElement(title, description) {
 
     const editButton = document.createElement('button');
     editButton.classList.add('edit-button');
+
     menuDiv.appendChild(shareButton);
     menuDiv.appendChild(infoButton);
     menuDiv.appendChild(editButton);
@@ -72,21 +57,49 @@ function createTaskElement(title, description) {
     menuDiv.style.display = 'none'; 
     taskDiv.appendChild(menuDiv);
 
-    taskDiv.addEventListener('click', () => {
-        if (currentlyOpenedMenu && currentlyOpenedMenu !== menuDiv) {
-            currentlyOpenedMenu.style.display = 'none'; 
-        }
-        menuDiv.style.display = menuDiv.style.display === 'none' ? 'block' : 'none';
-        currentlyOpenedMenu = menuDiv.style.display === 'block' ? menuDiv : null;
+    taskDiv.addEventListener('click', (event) => {
+        event.stopPropagation(); 
+        toggleTaskMenu(menuDiv, taskDiv);
+    });
+
+    taskDiv.appendChild(taskTitle);
+    taskDiv.appendChild(taskDescription);
+    taskDiv.appendChild(deleteButton);
+
+    document.querySelector('.tasks-list').appendChild(taskDiv);
+    
+    
+    // УДАЛЕНИЕ
+    deleteButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        taskToDelete = taskDiv;
+    
+        const deleteSection = document.querySelector('.delete-section');
+        deleteSection.style.display = 'block';
+    
+        document.querySelector('.no').addEventListener('click', (event) => {
+            deleteSection.style.display = 'none';
+        });
+    
+        document.querySelector('.yes').addEventListener('click', () => {
+            deleteTaskFromLocalStorage(taskDiv);
+            tasksList.removeChild(taskDiv); 
+    
+            if (tasksList.children.length === 0) {
+                noTasksMessage.style.display = 'block'; 
+            }
+    
+            deleteSection.style.display = 'none'; 
+        });
     });
 
 
     // ПОДЕЛИТЬСЯ 
     shareButton.addEventListener('click', (event) => {
-        const menuSection = document.querySelector('.menu-section');
+        const menuSection = document.querySelector('.share-section');
         menuSection.style.display = 'flex'; 
 
-        document.querySelector('.menu-section').addEventListener('click', (event) => {
+        document.querySelector('.share-section').addEventListener('click', (event) => {
             if (!event.target.closest('.menu')) {
                 menuSection.style.display = 'none';
             }
@@ -140,6 +153,30 @@ function createTaskElement(title, description) {
     tasksList.appendChild(taskDiv);
 }
 
+function toggleTaskMenu(menuDiv, taskDiv) {
+    if (currentlyOpenedMenu && currentlyOpenedMenu !== menuDiv) {
+        currentlyOpenedMenu.style.display = 'none';
+        currentlyOpenedMenu.parentElement.classList.remove('expanded');
+    }
+
+    if (menuDiv.style.display === 'none') {
+        menuDiv.style.display = 'flex'; 
+        taskDiv.classList.add('expanded'); 
+        currentlyOpenedMenu = menuDiv; 
+    } else {
+        menuDiv.style.display = 'none'; 
+        taskDiv.classList.remove('expanded'); 
+        currentlyOpenedMenu = null; 
+    }
+}
+
+document.addEventListener('click', (event) => {
+    if (currentlyOpenedMenu) {
+        currentlyOpenedMenu.style.display = 'none';
+        currentlyOpenedMenu.parentElement.classList.remove('expanded');
+        currentlyOpenedMenu = null;
+    }
+});
 
 function saveTasksToLocalStorage() {
     const tasks = [];
@@ -182,19 +219,6 @@ function deleteTaskFromLocalStorage(taskDiv) {
 window.onload = loadTasksFromLocalStorage;
 
 
-
-document.querySelector('.delete-section').addEventListener('click', (event) => {
-    if (event.target.classList.contains('yes')) {
-        if (taskToDelete) {
-            tasksList.removeChild(taskToDelete); 
-            taskToDelete = null;
-        }
-        document.querySelector('.delete-section').style.display = 'none'; 
-    } else if (event.target.classList.contains('no')) {
-        taskToDelete = null; 
-        document.querySelector('.delete-section').style.display = 'none'; 
-    }
-});
 
 
 
