@@ -12,9 +12,11 @@ $text-color: #F0E3CA;
 
 * {
     font-family: Roboto, sans-serif;
+    font-weight: 400;
     background-color: $background-color;
     box-sizing: border-box;
 }
+
 
 button {
     color: $text-color;
@@ -47,7 +49,6 @@ h3 {
     }
 
     .base-form {
-        display: flex;
         width: 100%;
         margin: 0;
 
@@ -64,8 +65,8 @@ h3 {
     }
 
     .delete-window {
-        width: 50%;
-        padding: 0px;
+        width: 60%;
+        padding: 10px;
     }
 
     .tasks-list {
@@ -84,25 +85,35 @@ h3 {
             }
         }
     }
-
 }
 
-@media screen and (min-width: 481px) and (max-width: 1200px) {
+@media screen and (min-width: 481px) and (max-width: 1000px) {
 
-    .window-delete {
+    .delete-window {
         width: 50%;
-        padding: 0px;
+    }
+
+    .tasks-list {
+        .task-item {
+            .delete-button {
+                right: 15px;
+                width: 5%;
+            }
+        }
     }
 }
 
 @media screen and (min-width: 2000px) and (max-width: 2600px) {
     .base-form {
-        width: 50%;
+        width: 80%;
         margin: 10px auto;
         display: flex;
+        height: 250px;
 
-        .input-element {
-            height: 55px;
+        .input-section {
+            .input-element {
+                height: 45%;
+            }
         }
     }
 
@@ -116,7 +127,7 @@ h3 {
 
     ul {
         margin: 5px auto;
-        width: 50%;
+        width: 80%;
         height: auto;
 
         & .task-item {
@@ -124,7 +135,43 @@ h3 {
         }
     }
 
-    .menu {
-        height: 400px;
+    .task-menu {
+        button {
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    .share-section {
+        .menu {
+            height: 150px;
+            width: 50%;
+        }
+    }
+
+    .delete-window {
+        height: 250px;
+        width: 25%;
+
+        p {
+            font-size: 40px;
+        }
+
+        button {
+            height: 40px;
+            width: 20%;
+        }
+    }
+
+    .edit-section {
+        .edit {
+            top: 50%;
+            right: 15%;
+            left: 15%;
+
+            & .edit-elements {
+                height: 90%;
+            }
+        }
     }
 }
