@@ -1,8 +1,8 @@
-const addButton = document.getElementsByClassName("add-button")[0];
-const titleInput = document.getElementById("title");
-const descriptionInput = document.getElementById("description");
-const noTasksMessage = document.getElementsByClassName('no-tasks')[0];
-const tasksList = document.getElementsByClassName("tasks-list")[0];
+const addButton = document.querySelector(".add-button");
+const titleInput = document.querySelector(".title");
+const descriptionInput = document.querySelector(".description");
+const noTasksMessage = document.querySelector('.no-tasks');
+const tasksList = document.querySelector(".tasks-list");
 
 
 // ДОБАВЛЕНИЕ ТАСКА
@@ -17,7 +17,7 @@ function addTask() {
         descriptionInput.value = ''; 
         noTasksMessage.style.display = 'none'; 
     } else {
-        alert("Please fill out both Title and Description!");
+        alert("Должны быть заполнены и название, и описание");
     }
 }
 
@@ -29,17 +29,25 @@ let currentlyOpenedMenu = null;
 // СОЗДАНИЕ ТАСКА
 function createTaskElement(title, description) {
     const taskDiv = document.createElement('div');
-    taskDiv.classList.add('task-item'); 
-    
+    taskDiv.classList.add('task-item');   
+
     const taskTitle = document.createElement('h3');
     taskTitle.textContent = title; 
-    
+
     const taskDescription = document.createElement('p');
-    taskDescription.textContent = description; 
-    
+
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('delete-button');
+
+
+    taskDiv.setAttribute('data-full-description', description);
+    if (description.length > 80) {
+        taskDescription.textContent = description.substring(0, 80) + '...';
+    } else {
+        taskDescription.textContent = description;
+    }
     
+
     // Меню
     const menuDiv = document.createElement('div');
     menuDiv.classList.add('task-menu'); 
@@ -53,32 +61,30 @@ function createTaskElement(title, description) {
     const editButton = document.createElement('button');
     editButton.classList.add('edit-button');
 
+    
+    menuDiv.style.display = 'none'; 
+    
+    taskDiv.addEventListener('click', (event) => {
+        event.stopPropagation(); 
+        taskMenu(menuDiv, taskDiv);
+    });
+       
+    document.querySelector('.tasks-list').appendChild(taskDiv);
+
     menuDiv.appendChild(shareButton);
     menuDiv.appendChild(infoButton);
     menuDiv.appendChild(editButton);
-
-    menuDiv.style.display = 'none'; 
-    taskDiv.appendChild(menuDiv);
-
-    taskDiv.addEventListener('click', (event) => {
-        event.stopPropagation(); 
-        toggleTaskMenu(menuDiv, taskDiv);
-    });
-    
     taskDiv.appendChild(taskTitle);
     taskDiv.appendChild(taskDescription);
     taskDiv.appendChild(deleteButton);
     taskDiv.appendChild(menuDiv);
-    
-    document.querySelector('.tasks-list').appendChild(taskDiv);
-
 
     createDeleteSection(taskDiv, deleteButton);
     createEditSection(taskDiv, taskTitle, taskDescription);
     createShareSection(taskDiv);
 }
 
-function toggleTaskMenu(menuDiv, taskDiv) {
+function taskMenu(menuDiv, taskDiv) {
     if (currentlyOpenedMenu && currentlyOpenedMenu !== menuDiv) {
         currentlyOpenedMenu.style.display = 'none';
         currentlyOpenedMenu.parentElement.classList.remove('expanded');
@@ -95,7 +101,7 @@ function toggleTaskMenu(menuDiv, taskDiv) {
     }
 }
 
-document.addEventListener('click', (event) => {
+document.addEventListener('click', () => {
     if (currentlyOpenedMenu) {
         currentlyOpenedMenu.style.display = 'none';
         currentlyOpenedMenu.parentElement.classList.remove('expanded');
