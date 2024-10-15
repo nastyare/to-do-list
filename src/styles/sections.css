@@ -27,7 +27,7 @@
 .base-form .add-button {
   margin-left: 10px;
   width: 10%;
-  background-image: url("../images/add-button.svg");
+  background-image: url("../assets/images/add-button.svg");
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -90,7 +90,7 @@
   right: 30px;
   top: 50%;
   transform: translateY(-50%);
-  background-image: url("../images/delete-button.svg");
+  background-image: url("../assets/images/delete-button.svg");
   background-size: 40%;
   background-position: center;
   background-repeat: no-repeat;
@@ -120,13 +120,13 @@
   background-color: #242320;
 }
 .task-menu button.share-button {
-  background-image: url("../images/share-button.svg");
+  background-image: url("../assets/images/share-button.svg");
 }
 .task-menu button.info-button {
-  background-image: url("../images/info-button.svg");
+  background-image: url("../assets/images/info-button.svg");
 }
 .task-menu button.edit-button {
-  background-image: url("../images/edit-button.svg");
+  background-image: url("../assets/images/edit-button.svg");
 }
 
 .background {
