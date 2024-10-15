@@ -16,14 +16,13 @@
   width: 90%;
 }
 .base-form .input-section .input-element {
-  height: 48px;
   background-color: #242320;
   border: 1px solid #A35709;
+  height: 48px;
   color: #F0E3CA;
-  border-radius: 8px;
   width: 100%;
-  font-weight: 400;
   font-size: 14px;
+  border-radius: 8px;
 }
 .base-form .add-button {
   margin-left: 10px;
@@ -50,12 +49,10 @@
   display: block;
   width: 100px;
   height: 1px;
-  background-color: #A35709;
+  background-color: #242320;
   border: 3px solid #A35709;
-  border-radius: 8px;
 }
 .no-tasks p {
-  font-weight: 400;
   font-size: 24px;
 }
 
@@ -67,38 +64,36 @@
   gap: 10px;
 }
 .tasks-list .task-item {
+  background-color: #242320;
+  border: 1px solid #A35709;
   width: 100%;
   position: relative;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 8px;
-  border: 2px solid #A35709;
-  background-color: #242320;
   padding: 10px 16px;
   position: relative;
   margin-bottom: 10px;
+  border-radius: 8px;
 }
 .tasks-list .task-item h3,
 .tasks-list .task-item p {
   margin: 0;
-  font-weight: 500;
   width: 80%;
   background-color: #242320;
 }
 .tasks-list .task-item p {
+  margin-top: 8px;
   font-size: 14px;
-  font-weight: 400;
 }
 .tasks-list .task-item .delete-button {
   position: absolute;
   right: 30px;
   top: 50%;
   transform: translateY(-50%);
-  cursor: pointer;
   background-image: url("../images/delete-button.svg");
   background-size: 40%;
-  background-repeat: no-repeat;
   background-position: center;
+  background-repeat: no-repeat;
   width: 3%;
   height: 50%;
 }
@@ -119,10 +114,9 @@
 .task-menu button {
   width: 35px;
   height: 35px;
-  border-radius: 8px;
   font-size: 10px;
-  background-repeat: no-repeat;
   background-position: center;
+  background-repeat: no-repeat;
   background-color: #242320;
 }
 .task-menu button.share-button {
@@ -153,13 +147,12 @@
   height: 180px;
   text-align: center;
   border-top: 6px solid #A35709;
-  border-radius: 8px;
 }
 .delete-window p {
-  font-weight: 400;
   font-size: 30px;
 }
 .delete-window button {
+  margin-right: 10px;
   height: 30px;
   width: 30%;
   font-size: 16px;
@@ -196,7 +189,6 @@
   flex-direction: column;
   align-items: center;
   padding-top: 10px;
-  border-radius: 8px;
   background-color: #1B1A17;
 }
 .edit-section .edit .edit-elements {
@@ -207,35 +199,33 @@
   flex-direction: column;
   align-items: center;
 }
-.edit-section .edit .edit-elements .title-element {
+.edit-section .edit .edit-elements .edit-element {
   width: 90%;
-  margin-bottom: 10px;
   padding: 10px;
-  border-radius: 8px;
   color: #F0E3CA;
-  border: 1px solid #A35709;
   background-color: #242320;
+  border: 1px solid #A35709;
   text-align: left;
+  border-radius: 8px;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+.edit-section .edit .edit-elements .title-element {
+  height: 20%;
+  margin-bottom: 10px;
 }
 .edit-section .edit .edit-elements .description-element {
-  width: 90%;
   height: 80%;
-  padding: 10px;
-  border-radius: 8px;
-  color: #F0E3CA;
-  border: 1px solid #A35709;
-  background-color: #242320;
-  text-align: left;
   resize: none;
-  overflow-wrap: break-word;
+  padding: 10px;
+  box-sizing: border-box;
 }
 .edit-section .edit .buttons {
   display: flex;
   justify-content: space-around;
   width: 30%;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 .edit-section .edit .buttons button {
   padding: 10px 15px;
-  cursor: pointer;
 }/*# sourceMappingURL=sections.css.map */
