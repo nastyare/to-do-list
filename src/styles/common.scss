@@ -20,6 +20,7 @@ button {
     color: $text-color;
     border-radius: 8px;
     border: 2px solid $border-color;
+    background-color: $background-color;
     cursor: pointer;
 }
 
@@ -31,79 +32,99 @@ button:hover {
 p,
 h3 {
     color: $text-color;
-    justify-content: center;
-    align-items: center;
 }
 
 
 @media screen and (min-width: 300px) and (max-width: 480px) {
-    .base-form {
-        display: flex;
-        width: 80%;
-        height: 30%;
-        margin: 0;
-        border: 1px solid white;
+
+    h3,
+    p {
+        font-size: 20px;
     }
 
-    ul {
-        border: 1px solid white;
-        margin: 5px auto;
-        width: 50%;
-        height: auto;
+    .main-section {
+        padding: 0px;
+    }
 
-        & .task-item {
+    .base-form {
+        display: flex;
+        width: 100%;
+        margin: 0;
+
+        .input-section {
             height: 100px;
+            width: 75%;
 
-            h3 {
-                font-size: 36px;
-            }
+        }
 
-            p {
-                font-size: 30px;
+        .add-button {
+            width: 25%;
+        }
+
+    }
+
+    .delete-window {
+        width: 50%;
+        padding: 0px;
+    }
+
+    .tasks-list {
+        .task-item {
+            .delete-button {
+                right: 15px;
+                width: 10%;
             }
         }
     }
 
+    .edit-section {
+        .edit {
+            .buttons {
+                width: 70%;
+            }
+        }
+    }
 
+}
+
+@media screen and (min-width: 481px) and (max-width: 1200px) {
+
+    .window-delete {
+        width: 50%;
+        padding: 0px;
+    }
 }
 
 @media screen and (min-width: 2000px) and (max-width: 2600px) {
     .base-form {
         width: 50%;
-        height: 300px;
-        border: 1px solid green;
         margin: 10px auto;
         display: flex;
 
-        & .input-section {
-            width: 80%;
-        }
-
-        & .add-button {
-            width: 20%;
+        .input-element {
+            height: 55px;
         }
     }
 
+    h3 {
+        font-size: 36px;
+    }
+
+    p {
+        font-size: 30px;
+    }
+
     ul {
-        border: 1px solid white;
         margin: 5px auto;
         width: 50%;
         height: auto;
 
         & .task-item {
             height: 100px;
-
-            h3 {
-                font-size: 36px;
-            }
-
-            p {
-                font-size: 30px;
-            }
         }
     }
 
     .menu {
-        height: 300px;
+        height: 400px;
     }
 }
