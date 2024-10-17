@@ -11,7 +11,10 @@ function createShareSection(taskDiv, title, description) {
         });
 
         const copyButton = document.querySelector('.copy');
-        copyButton.addEventListener('click', () => {
+        const newCopyButton = copyButton.cloneNode(true);
+        copyButton.parentNode.replaceChild(newCopyButton, copyButton);
+
+        newCopyButton.addEventListener('click', () => {
             copyText(title, description);
         });
     });   
