@@ -11,7 +11,8 @@ function addTask() {
     const description = descriptionInput.value.trim();
 
     if (title && description) {
-        createTaskElement(title, description);
+        const taskId = Date.now(); // Генерация уникального идентификатора
+        createTaskElement(taskId, title, description);
         saveTasksToLocalStorage(); 
         titleInput.value = ''; 
         descriptionInput.value = ''; 
@@ -20,16 +21,16 @@ function addTask() {
         alert("Должны быть заполнены и название, и описание");
     }
 }
-
 addButton.addEventListener('click', addTask);
 
 let taskToDelete = null;
 let currentlyOpenedMenu = null;
 
 // СОЗДАНИЕ ТАСКА
-function createTaskElement(title, description) {
+function createTaskElement(id, title, description) {
     const taskDiv = document.createElement('div');
     taskDiv.classList.add('task-item');   
+    taskDiv.setAttribute('id', id);  
 
     const taskTitle = document.createElement('h3');
     taskTitle.textContent = title; 
@@ -81,7 +82,7 @@ function createTaskElement(title, description) {
 
     createDeleteSection(taskDiv, deleteButton);
     createEditSection(taskDiv, taskTitle, taskDescription);
-    createShareSection(taskDiv);
+    createShareSection(taskDiv, taskTitle, taskDescription);
 }
 
 function taskMenu(menuDiv, taskDiv) {
@@ -116,9 +117,10 @@ function saveTasksToLocalStorage() {
     const taskItems = document.querySelectorAll('.task-item');
 
     taskItems.forEach(task => {
+        const id = task.getAttribute('id');
         const title = task.querySelector('h3').textContent;
         const description = task.querySelector('p').textContent;
-        tasks.push({ title, description });
+        tasks.push({ id, title, description }); 
     });
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -127,10 +129,9 @@ function saveTasksToLocalStorage() {
 function loadTasksFromLocalStorage() {
     const tasks = JSON.parse(localStorage.getItem('tasks'));
     tasks.forEach(task => {
-        createTaskElement(task.title, task.description);
+        createTaskElement(task.id, task.title, task.description); 
     });
 
-    
     if (tasks.length > 0) {
         noTasksMessage.style.display = 'none';
     } else {
@@ -138,15 +139,17 @@ function loadTasksFromLocalStorage() {
     }
 }
 
-function deleteTaskFromLocalStorage(taskDiv) {
-    const title = taskDiv.querySelector('h3').textContent;
+function deleteTaskFromLocalStorage(taskId) {
     const tasks = JSON.parse(localStorage.getItem('tasks'));
-    const updatedTasks = tasks.filter(task => task.title !== title);
+    const id = taskId;
+    const updatedTasks = tasks.filter(task => task.id !== id); 
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
 
-    if (updatedTasks.length === 0) {
+    if (tasks.length === 0) {
         noTasksMessage.style.display = 'block'; 
     }
 }
 
+
 window.onload = loadTasksFromLocalStorage;
+
