@@ -5,7 +5,7 @@ function saveTasksToLocalStorage() {
     taskItems.forEach(task => {
         const id = task.getAttribute('id');
         const title = task.querySelector('h3').textContent;
-        const description = task.querySelector('p').textContent;
+        const description = task.getAttribute('full-description');
         tasks.push({ id, title, description }); 
     });
 
@@ -37,5 +37,3 @@ function loadTasksFromLocalStorage() {
 }
 
 window.onload = loadTasksFromLocalStorage;
-
-

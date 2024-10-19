@@ -51,4 +51,3 @@ document.addEventListener('click', () => {
         currentlyOpenedMenu = null;
     }
 });
-

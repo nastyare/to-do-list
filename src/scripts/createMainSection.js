@@ -10,11 +10,13 @@ function createMainSection() {
 
     const titleInput = document.createElement('input');
     titleInput.type = 'text';
+    titleInput.name = 'title-field';
     titleInput.classList.add('title', 'input-element');
     titleInput.placeholder = 'Title...';
 
     const descriptionInput = document.createElement('input');
     descriptionInput.type = 'text';
+    descriptionInput.name = 'description-field';
     descriptionInput.classList.add('description', 'input-element');
     descriptionInput.placeholder = 'About...';
 

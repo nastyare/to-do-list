@@ -30,5 +30,5 @@ function createTaskItem(id, title, description) {
 
     createDeleteSection(taskDiv, deleteButton);
     createEditSection(taskDiv, taskTitle, taskDescription);
-    createShareSection(taskDiv, taskTitle, taskDescription);
+    createShareSection(taskDiv, taskTitle);
 }

@@ -53,8 +53,4 @@ function createDeleteSection(taskDiv, deleteButton) {
             }
         });
     });
-
-
-    
 }
-
