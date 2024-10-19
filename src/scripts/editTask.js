@@ -41,7 +41,7 @@ function createEditSection(taskDiv, taskTitle, taskDescription) {
         const editSection = document.querySelector('.edit-section');
         
         const currentTitle = taskTitle.textContent;
-        const currentDescription = taskDiv.getAttribute('data-full-description'); 
+        const currentDescription = taskDiv.getAttribute('full-description'); 
     
         const editTitleInput = document.querySelector('.title-element');
         const editDescriptionInput = document.querySelector('.description-element');
@@ -57,7 +57,7 @@ function createEditSection(taskDiv, taskTitle, taskDescription) {
 
             const newDescription = editDescriptionInput.value;
             taskDescription.textContent = newDescription.length > 80 ? newDescription.substring(0, 80) + '...' : newDescription;
-            taskDiv.setAttribute('data-full-description', newDescription); 
+            taskDiv.setAttribute('full-description', newDescription); 
     
             editSection.style.display = 'none';
     
