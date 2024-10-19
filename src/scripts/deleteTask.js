@@ -37,7 +37,7 @@ function createDeleteSection(taskDiv, deleteButton) {
             tasksList.removeChild(taskDiv); 
         
             if (tasksList.children.length === 0) {
-                noTasksMessage.style.display = 'block'; 
+                noTasks.style.display = 'block'; 
             }
         
             deleteSectionDiv.style.display = 'none'; 
