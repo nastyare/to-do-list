@@ -9,8 +9,11 @@ function createEditSection(taskDiv, taskTitle, taskDescription) {
     editElements.classList.add('edit-elements');
 
     const titleElement = document.createElement('input');
+    titleElement.name = 'edit-title-field';
     titleElement.classList.add('title-element', 'edit-element');
+
     const descriptionElement = document.createElement('textarea');
+    descriptionElement.name = 'edit-description-field';
     descriptionElement.classList.add('description-element', 'edit-element');
 
     editElements.appendChild(titleElement);
@@ -49,19 +52,21 @@ function createEditSection(taskDiv, taskTitle, taskDescription) {
         editTitleInput.value = currentTitle;
         editDescriptionInput.value = currentDescription; 
     
-        editSection.style.display = 'block';
+        editSection.style.display = 'block'; 
     
         const saveButton = document.querySelector('.save');
         saveButton.onclick = () => {
             taskTitle.textContent = editTitleInput.value;
 
             const newDescription = editDescriptionInput.value;
-            taskDescription.textContent = newDescription.length > 80 ? newDescription.substring(0, 80) + '...' : newDescription;
+            taskDescription.textContent = newDescription.length > 80 ?
+             newDescription.substring(0, 80) + '...' : newDescription;
+
             taskDiv.setAttribute('full-description', newDescription); 
     
-            editSection.style.display = 'none';
+            editSection.style.display = 'none'; 
     
-            saveTasksToLocalStorage();
+            saveTasksToLocalStorage(); 
         };
 
         const cancelButton = document.querySelector('.cancel');
