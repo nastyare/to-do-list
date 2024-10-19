@@ -15,6 +15,3 @@ function addTask(titleInput, descriptionInput) {
         alert("Должны быть заполнены и название, и описание");
     }
 }
-
-
-
