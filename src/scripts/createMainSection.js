@@ -50,5 +50,11 @@ function createMainSection() {
         addTask(titleInput, descriptionInput)
     );
 
+    descriptionInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            addTask(titleInput, descriptionInput);
+        }
+    });
+
     return { noTasks, tasksList };
 }
