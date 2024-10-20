@@ -1,3 +1,5 @@
+"use strict";
+
 function createTaskItem(id, title, description) {
     const taskDiv = document.createElement('div');
     taskDiv.classList.add('task-item');   

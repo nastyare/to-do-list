@@ -1,3 +1,5 @@
+"use strict";
+
 const { noTasks, tasksList } = createMainSection();
 
 function addTask(titleInput, descriptionInput) {

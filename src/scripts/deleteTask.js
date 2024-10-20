@@ -1,9 +1,11 @@
-let taskToDelete = null;
+"use strict";
+
+let taskForDelete = null;
 
 function createDeleteSection(taskDiv, deleteButton) {
     deleteButton.addEventListener('click', (e) => {
         e.stopPropagation();
-        taskToDelete = taskDiv;
+        taskForDelete = taskDiv;
 
         const deleteSectionDiv = document.createElement('div');
         deleteSectionDiv.classList.add('delete-section', 'background');
@@ -15,11 +17,9 @@ function createDeleteSection(taskDiv, deleteButton) {
         confirmQuestion.textContent = 'Delete this task?';
 
         const yesButton = document.createElement('button');
-        yesButton.classList.add('yes');
         yesButton.textContent = 'Yes';
 
         const noButton = document.createElement('button');
-        noButton.classList.add('no');
         noButton.textContent = 'No';
 
 

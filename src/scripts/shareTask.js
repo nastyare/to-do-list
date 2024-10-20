@@ -1,6 +1,8 @@
+"use strict";
+
 function handleCopyButton(taskDiv, title) {
-    const fullDescription = taskDiv.getAttribute('full-description'); 
-    copyText(title, fullDescription); 
+    const description = taskDiv.getAttribute('full-description'); 
+    copyText(title, description); 
 }
 
 function createShareSection(taskDiv, title) {
@@ -50,9 +52,9 @@ function createShareSection(taskDiv, title) {
     }
 }
 
-function copyText(title, fullDescription) {
+function copyText(title, description) {
     const taskTitle = title.textContent;
-    const taskText = `${taskTitle} ` + `${fullDescription}`; 
+    const taskText = `${taskTitle} ` + `${description}`; 
 
     navigator.clipboard.writeText(taskText).then(() => {
         alert('Текст успешно скопирован');

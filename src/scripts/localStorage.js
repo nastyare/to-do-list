@@ -1,3 +1,5 @@
+"use strict";
+
 function saveTasksToLocalStorage() {
     const tasks = [];
     const taskItems = document.querySelectorAll('.task-item');
@@ -15,12 +17,8 @@ function saveTasksToLocalStorage() {
 function deleteTaskFromLocalStorage(taskId) {
     const tasks = JSON.parse(localStorage.getItem('tasks'));
     const id = taskId;
-    const updatedTasks = tasks.filter(task => task.id !== id); 
-    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-
-    if (tasks.length === 0) {
-        noTasks.style.display = 'block'; 
-    }
+    const updatedTasksList = tasks.filter(task => task.id !== id); 
+    localStorage.setItem('tasks', JSON.stringify(updatedTasksList));
 }
 
 function loadTasksFromLocalStorage() {

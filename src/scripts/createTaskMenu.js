@@ -1,3 +1,5 @@
+"use strict";
+
 function createTaskMenu(taskDiv) {
     const menuDiv = document.createElement('div');
     menuDiv.classList.add('task-menu'); 
@@ -25,29 +27,29 @@ function createTaskMenu(taskDiv) {
     return menuDiv;
 }
 
-let currentlyOpenedMenu = null;
+let openedMenu = null;
 
 function taskMenu(menuDiv, taskDiv) {
-    if (currentlyOpenedMenu && currentlyOpenedMenu !== menuDiv) {
-        currentlyOpenedMenu.style.display = 'none';
-        currentlyOpenedMenu.parentElement.classList.remove('expanded');
+    if (openedMenu && openedMenu !== menuDiv) {
+        openedMenu.style.display = 'none';
+        openedMenu.parentElement.classList.remove('expanded');
     }
 
     if (menuDiv.style.display === 'none') {
         menuDiv.style.display = 'flex'; 
         taskDiv.classList.add('expanded'); 
-        currentlyOpenedMenu = menuDiv; 
+        openedMenu = menuDiv; 
     } else {
         menuDiv.style.display = 'none'; 
         taskDiv.classList.remove('expanded'); 
-        currentlyOpenedMenu = null; 
+        openedMenu = null; 
     }
 }
 
 document.addEventListener('click', () => {
-    if (currentlyOpenedMenu) {
-        currentlyOpenedMenu.style.display = 'none';
-        currentlyOpenedMenu.parentElement.classList.remove('expanded');
-        currentlyOpenedMenu = null;
+    if (openedMenu) {
+        openedMenu.style.display = 'none';
+        openedMenu.parentElement.classList.remove('expanded');
+        openedMenu = null;
     }
 });

@@ -1,3 +1,5 @@
+"use strict";
+
 function createEditSection(taskDiv, taskTitle, taskDescription) {
     const editSectionDiv = document.createElement('div');
     editSectionDiv.classList.add('edit-section', 'background');
